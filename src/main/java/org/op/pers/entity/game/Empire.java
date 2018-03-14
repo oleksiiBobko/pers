@@ -22,7 +22,7 @@ import org.op.pers.entity.game.resources.Food;
 import org.op.pers.entity.game.resources.Gold;
 import org.op.pers.entity.game.resources.Stone;
 import org.op.pers.entity.game.resources.Wood;
-import org.op.pers.entity.misc.User;
+import org.op.pers.entity.misc.PersUser;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -55,7 +55,7 @@ public class Empire implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
-    private User user;
+    private PersUser user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "allianceid")

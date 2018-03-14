@@ -5,7 +5,7 @@ import java.util.List;
 import org.op.pers.entity.game.Alliance;
 import org.op.pers.entity.game.Empire;
 import org.op.pers.entity.game.World;
-import org.op.pers.entity.misc.User;
+import org.op.pers.entity.misc.PersUser;
 import org.op.pers.services.AllianceService;
 import org.op.pers.services.EmpireService;
 import org.op.pers.services.UserService;
@@ -41,13 +41,13 @@ public class AdminController {
     private AllianceService allianceService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+    public ResponseEntity<List<PersUser>> getAllUsers() {
+        List<PersUser> users = userService.getAllUsers();
+        return new ResponseEntity<List<PersUser>>(users, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
-    public ResponseEntity<Void> addUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Void> addUser(@RequestBody PersUser user, UriComponentsBuilder ucBuilder) {
         userService.createUser(user);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getUserId()).toUri());
@@ -55,26 +55,26 @@ public class AdminController {
     }
 
     @RequestMapping(path = { "/user/{userId}" }, method = RequestMethod.GET)
-    public User getUserById(@PathVariable Long userId) {
+    public PersUser getUserById(@PathVariable Long userId) {
         return userService.getUser(userId);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-        log.info("Updating User " + id);
+    public ResponseEntity<PersUser> updateUser(@PathVariable("id") long id, @RequestBody PersUser user) {
+        log.info("Updating PersUser " + id);
           
-        User currentUser = userService.getUser(id);
+        PersUser currentPersUser = userService.getUser(id);
           
-        if (currentUser==null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        if (currentPersUser==null) {
+            return new ResponseEntity<PersUser>(HttpStatus.NOT_FOUND);
         }
   
-//        currentUser.setUsername(user.getUsername());
-//        currentUser.setAddress(user.getAddress());
-//        currentUser.setEmail(user.getEmail());
+//        currentPersUser.setPersUsername(user.getPersUsername());
+//        currentPersUser.setAddress(user.getAddress());
+//        currentPersUser.setEmail(user.getEmail());
 //          
-//        userService. updateUser(currentUser);
-        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+//        userService. updatePersUser(currentPersUser);
+        return new ResponseEntity<PersUser>(currentPersUser, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
@@ -84,9 +84,9 @@ public class AdminController {
     }
 
    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
-    public ResponseEntity<User> deleteAllUsers() {
-//        userService.deleteAllUsers();
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<PersUser> deleteAllPersUsers() {
+//        userService.deleteAllPersUsers();
+        return new ResponseEntity<PersUser>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(path = { "/empire/{empireId}" }, method = RequestMethod.GET)

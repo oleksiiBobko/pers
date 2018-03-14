@@ -33,7 +33,7 @@ public class ActivationToken {
 
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    private User user;
+    private PersUser user;
 
     @Column(name = "expire")
     @Type(type = "timestamp")
@@ -46,7 +46,7 @@ public class ActivationToken {
         super();
     }
 
-    public ActivationToken(User user) {
+    public ActivationToken(PersUser user) {
         super();
         this.token = PersUtils.getUUID();
         this.user = user;
@@ -77,11 +77,11 @@ public class ActivationToken {
         this.token = token;
     }
 
-    public User getUser() {
+    public PersUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(PersUser user) {
         this.user = user;
     }
 

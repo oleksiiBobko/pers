@@ -10,7 +10,7 @@ import org.op.pers.entity.game.resources.Food;
 import org.op.pers.entity.game.resources.Gold;
 import org.op.pers.entity.game.resources.Stone;
 import org.op.pers.entity.game.resources.Wood;
-import org.op.pers.entity.misc.User;
+import org.op.pers.entity.misc.PersUser;
 import org.op.pers.services.EmpireService;
 import org.op.pers.services.WorldService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class EmpireServiceImpl implements EmpireService {
     private WorldService worldService;
 
     @Override
-    public Empire createNewEmpire(User user) {
+    public Empire createNewEmpire(PersUser user) {
         Empire empire = new Empire();
         empire.setUser(user);
         Wood w = new Wood();

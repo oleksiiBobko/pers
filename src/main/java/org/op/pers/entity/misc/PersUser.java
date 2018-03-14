@@ -2,7 +2,9 @@ package org.op.pers.entity.misc;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,7 +29,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @Table(name = "user")
-public class User implements Serializable {
+public class PersUser implements Serializable {
 
     /**
      * 
@@ -43,6 +45,9 @@ public class User implements Serializable {
     private String password;
 
     private boolean active;
+
+    @OneToMany(targetEntity = PersUser.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    private Set<PersUserRole> userRole = new HashSet<PersUserRole>();
 
     @Size(min = 3, max = 32, message = "The login must be at least 5 characters long.")
     private String login;

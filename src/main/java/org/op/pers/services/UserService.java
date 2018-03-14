@@ -2,15 +2,15 @@ package org.op.pers.services;
 
 import java.util.List;
 
-import org.op.pers.entity.misc.User;
+import org.op.pers.entity.misc.PersUser;
 
 public interface UserService {
 
-    public User getUser(long id);
+    public PersUser getUser(long id);
 
-    public User createUser(User name);
+    public PersUser createUser(PersUser name);
 
-    public List<User> getAllUsers();
+    public List<PersUser> getAllUsers();
 
     public void removeUser(long id);
 
