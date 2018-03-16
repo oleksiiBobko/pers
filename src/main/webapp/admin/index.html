@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="persApp">
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS User Registration and Login Example</title>
+    <link href="app-content/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="app-content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="app-content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="app-content/css/main.css" rel="stylesheet" type="text/css" />
+<!--     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" /> -->
+    <link href="app-content/app.css" rel="stylesheet" />
+</head>
+<body class="home" ng-app="persApp">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <div class="credits text-center">
+        <p>
+            <h4>footer</h4>
+        </p>
+    </div>
+
+    <script type="text/javascript" src="app-content/js/jquery.min.js"></script>
+    <script type="text/javascript" src="app-content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app-content/js/angular.min.js"></script>
+    <script type="text/javascript" src="app-content/js/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+ 
+    <script type="text/javascript" src="app.js"></script>
+ <!--    <script type="text/javascript" src="app/route/route.js"></script> -->
+    <script type="text/javascript" src="app-services/user.service.js"></script>
+ <!--    <script type="text/javascript" src="app/controller/user.controller.js"></script> -->
+    <script type="text/javascript" src="app-services/authentication.service.js"></script>
+    <script type="text/javascript" src="app-services/flash.service.js"></script>
+    <script type="text/javascript" src="app-services/user.service.local-storage.js"></script>
+
+    <!-- <script src="app-services/user.service.js"></script> -->
+
+    <!-- Fake user service for demo that uses local storage -->
+
+    <script src="home/home.controller.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="register/register.controller.js"></script>
+</body>
+</html>

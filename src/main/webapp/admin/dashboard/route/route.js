@@ -8,7 +8,7 @@ app.config(function($routeProvider) {
     }).when("/users", {
         templateUrl : "admin/html/users.htm",
     }).when("/settings", {
-        templateUrl : "admin/html/settings.htm"
+        templateUrl : "html/settings.htm"
     }).otherwise({
         redirectTo: "/home",
     });

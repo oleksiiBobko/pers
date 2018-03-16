@@ -22,16 +22,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @ComponentScan({"org.op.pers.services", "org.op.pers.dao"})
 public class HibernateConfig {
 
-//    @Bean(destroyMethod = "close")
-//    public DataSource dataSource() throws PropertyVetoException {
-//        ComboPooledDataSource cpds = new ComboPooledDataSource();
-//        cpds.setDriverClass("org.h2.Driver");
-//        cpds.setJdbcUrl("jdbc:h2:~/test");
-//        cpds.setUser("sa");
-//        cpds.setPassword("");
-//        return cpds;
-//    }
-
     @Bean(destroyMethod = "close")
     public DataSource dataSource() throws PropertyVetoException {
         ComboPooledDataSource cpds = new ComboPooledDataSource();
@@ -78,6 +68,7 @@ public class HibernateConfig {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.internal.NoCacheProvider");
         properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.import_files", "init.sql");
         properties.setProperty("hibernate.hbm2ddl.auto", "create");
         properties.setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_REPEATABLE_READ));
         return properties;

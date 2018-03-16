@@ -16,28 +16,19 @@
         return service;
 
         function Login(username, password, callback) {
-
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-//            $timeout(function () {
-//                var response;
-//                UserService.GetByUsername(username)
-//                    .then(function (user) {
-//                        if (user !== null && user.password === password) {
-//                            response = { success: true };
-//                        } else {
-//                            response = { success: false, message: 'Username or password is incorrect' };
-//                        }
-//                        callback(response);
-//                    });
-//            }, 1000);
-
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            $http.post('http://localhost:8081/login', JSON.stringify({ username: username, password: password }))
-                .success(function (response) {
+            $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+            $http.defaults.headers.post["Authorization"] = "Form";
+            $http({
+                url: 'http://localhost:8081/login',
+                method: "POST",
+                data: 'username=' + username + '&password=' + password
+            })
+            .then(function(response) {
                     callback(response);
-                });
+            }, 
+            function(response) {
+                    console.log('failed' + response);
+            });
 
         }
 

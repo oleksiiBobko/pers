@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,7 @@ public class PersUser implements Serializable {
     private static final long serialVersionUID = 2837221441316782206L;
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue
     private long userId;
 
@@ -45,9 +47,6 @@ public class PersUser implements Serializable {
     private String password;
 
     private boolean active;
-
-    @OneToMany(targetEntity = PersUser.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    private Set<PersUserRole> userRole = new HashSet<PersUserRole>();
 
     @Size(min = 3, max = 32, message = "The login must be at least 5 characters long.")
     private String login;
@@ -62,10 +61,13 @@ public class PersUser implements Serializable {
     private String email;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "id")
+    @JoinColumn(nullable = false, name = "token_id")
     private ActivationToken token;
 
     @OneToMany(targetEntity = Empire.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Empire> empires = new ArrayList<>();
+
+    @OneToMany(targetEntity = PersUserRole.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    private Set<PersUserRole> userRoles = new HashSet<>();
 
 }

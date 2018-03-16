@@ -1,5 +1,7 @@
 package org.op.pers.entity.game.resources;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +24,12 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "gold")
-public class Gold {
+public class Gold implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5267096939024115348L;
 
     @Id
     @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "empire"))

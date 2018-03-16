@@ -1,5 +1,6 @@
 package org.op.pers.entity.misc;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
@@ -17,16 +18,26 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 import org.op.pers.util.PersUtils;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "activation_token")
-public class ActivationToken {
+public class ActivationToken implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3963664610667271558L;
+
     private static final int EXPIRATION = 60 * 24;
 
     @Id
     @Column(name = "token_id", unique = true, nullable = false)
     @GeneratedValue(generator = "gen")
     @GenericGenerator(name = "gen", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
-    private int id;
+    private long tockenId;
 
     @Column(name = "token")
     private String token;
@@ -59,46 +70,6 @@ public class ActivationToken {
         cal.setTime(new Timestamp(cal.getTime().getTime()));
         cal.add(Calendar.MINUTE, expiryTimeInMinutes);
         return new Timestamp(cal.getTime().getTime());
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public PersUser getUser() {
-        return user;
-    }
-
-    public void setUser(PersUser user) {
-        this.user = user;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-    public Timestamp getExpire() {
-        return expire;
-    }
-
-    public void setExpire(Timestamp expire) {
-        this.expire = expire;
     }
 
     public boolean isExpired() {

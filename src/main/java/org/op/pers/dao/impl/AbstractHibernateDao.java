@@ -30,7 +30,7 @@ public abstract class AbstractHibernateDao<T extends Serializable> {
     }
 
     public T findOne(long id) {
-        return (T) getCurrentSession().get(clazz, id);
+        return getCurrentSession().get(clazz, id);
     }
 
     public List<T> findAll() {
@@ -39,7 +39,7 @@ public abstract class AbstractHibernateDao<T extends Serializable> {
         Root<T> contactRoot = criteria.from(clazz);
         criteria.select(contactRoot);
         List<T> list = getCurrentSession().createQuery(criteria).getResultList();
-        return list == null ? new ArrayList<T>() : list;
+        return list == null ? new ArrayList<>() : list;
     }
 
     public void create(T entity) {

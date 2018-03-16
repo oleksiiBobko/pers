@@ -47,7 +47,7 @@ public class Empire implements Serializable {
     private static final long serialVersionUID = -7392192731420447980L;
 
     @Id
-    @Column(name = "empireid")
+    @Column(name = "empire_id")
     @GeneratedValue
     private long empireId;
 
