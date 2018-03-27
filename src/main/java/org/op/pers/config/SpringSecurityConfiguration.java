@@ -1,7 +1,7 @@
 package org.op.pers.config;
 
-import org.op.pers.services.PersSavedRequestAwareAuthenticationSuccessHandler;
-import org.op.pers.services.RestAuthenticationEntryPoint;
+import org.op.pers.config.components.CustomAuthenticationSuccessHandler;
+import org.op.pers.config.components.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Autowired
-    private PersSavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler;
+    private CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+
+    @Autowired
+    LogoutSuccessHandler logoutSuccessHandler;
 
     @Autowired
     @Qualifier("persUserDetailsService")
@@ -37,7 +41,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception { 
         http
-
         .csrf().disable()
         .exceptionHandling()
         .authenticationEntryPoint(restAuthenticationEntryPoint)
@@ -49,7 +52,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .successHandler(authenticationSuccessHandler)
         .failureHandler(new SimpleUrlAuthenticationFailureHandler())
         .and()
-        .logout();
+        .logout()
+        .logoutSuccessHandler(logoutSuccessHandler);
     }
 
     @Bean

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<h1>Spring Boot - Multiple file upload example - AJAX</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <input class="form-control" type="text" name="extraField"/><br/><br/>
+        <input class="form-control" type="file" name="file" multiple/><br/><br/>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </div>
+</form>
+
+<div class="progress">
+      <div id="progressBar" class="progress-bar progress-bar-success" role="progressbar"
+        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+</div>
+
+<div id="alertMsg" style="color: red;font-size: 18px;"></div>
+
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>

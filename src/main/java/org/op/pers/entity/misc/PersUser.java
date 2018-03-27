@@ -29,7 +29,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @ToString
-@Table(name = "user")
+@Table(name = "pers_user")
 public class PersUser implements Serializable {
 
     /**

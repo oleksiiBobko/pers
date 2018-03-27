@@ -19,7 +19,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @EnableTransactionManagement
 @Configuration
-@ComponentScan({"org.op.pers.services", "org.op.pers.dao"})
+@ComponentScan({"org.op.pers.services", "org.op.pers.dao", "org.op.pers.config.components"})
 public class HibernateConfig {
 
     @Bean(destroyMethod = "close")
@@ -63,13 +63,13 @@ public class HibernateConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.default_schema", "pers_public");
+        properties.setProperty("hibernate.default_schema", "public");
         properties.setProperty("hibernate.connection.pool_size", "1");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.internal.NoCacheProvider");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.hbm2ddl.import_files", "init.sql");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+//        properties.setProperty("hibernate.hbm2ddl.auto", "create");
         properties.setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_REPEATABLE_READ));
         return properties;
     }

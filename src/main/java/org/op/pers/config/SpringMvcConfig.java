@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,6 +23,9 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 @Configuration
 @ComponentScan(basePackages = { "org.op.pers.web" })
 public class SpringMvcConfig implements WebMvcConfigurer {
+
+    private int maxUploadSizeInMb = 500 * 1024 * 1024; // 500 MB
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -54,5 +60,19 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(jacksonMessageConverter());
     }
+
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        return new StandardServletMultipartResolver();
+//    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+       CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+        cmr.setMaxUploadSize(maxUploadSizeInMb * 2);
+        cmr.setMaxUploadSizePerFile(maxUploadSizeInMb); //bytes
+        return cmr;
+    }
+
 
 }

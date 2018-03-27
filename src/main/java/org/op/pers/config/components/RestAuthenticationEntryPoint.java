@@ -1,4 +1,4 @@
-package org.op.pers.services;
+package org.op.pers.config.components;
 
 import java.io.IOException;
 

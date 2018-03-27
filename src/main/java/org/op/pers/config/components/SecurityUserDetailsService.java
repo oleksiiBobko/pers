@@ -1,4 +1,4 @@
-package org.op.pers.services;
+package org.op.pers.config.components;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("persUserDetailsService")
-public class PersUserDetailsService implements UserDetailsService {
+public class SecurityUserDetailsService implements UserDetailsService {
 
     @Autowired
     private PersUserDao userDao;

@@ -12,12 +12,12 @@ public class ErrorController {
 
     @RequestMapping(value = "/notfound", method = RequestMethod.GET)
     public ResponseEntity<ErrorMsg> notfound() {
-        return new ResponseEntity<ErrorMsg>(new ErrorMsg("not found") ,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorMsg("not found") ,HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = "/unauthorized", method = RequestMethod.GET)
     public ResponseEntity<ErrorMsg> unauthorized() {
-        return new ResponseEntity<ErrorMsg>(new ErrorMsg("unauthorized") ,HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(new ErrorMsg("unauthorized") ,HttpStatus.UNAUTHORIZED);
     }
 
 }

@@ -1,4 +1,4 @@
-package org.op.pers.services;
+package org.op.pers.config.components;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class SpringSecurityAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
